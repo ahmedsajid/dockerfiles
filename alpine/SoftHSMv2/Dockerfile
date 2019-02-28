@@ -1,7 +1,10 @@
 #
+# This Dockerfile builds Softhsmv2 inside Alpine Image
+#
 
 ARG    alpine_version=3.8
 
+# Image to be used for Building
 FROM   alpine:${alpine_version} as builder
 
 ARG    softhsm_version=2.5.0
@@ -19,6 +22,8 @@ RUN    apk add  build-base sqlite autoconf automake boost-dev libtool p11-kit-de
        make -j 16 && \
        make install -j 16
 
+# Final Image
+
 FROM   alpine:${alpine_version}
 
 ARG    alpine_version=${alpine_version}
@@ -29,7 +34,5 @@ COPY   --from=builder /usr/lib/softhsm/libsofthsm2.so /usr/lib/softhsm/libsofths
 
 ENV    ALPINE_VERSION=${alpine_version}
 
-RUN    if [ ${ALPINE_VERSION} > 3.8 ];then export libcrypto_package="libcrypto1.1" ; else export libcrypto_package="libcrypto1.0";fi && \
-       apk add --no-cache musl-dev libgcc libstdc++ zlib ${libcrypto_package} && \
-       mkdir -p /var/lib/softhsm/tokens/ && \
-       softhsm2-util --init-token --slot 0 --label "ForFabric" --so-pin 1234 --pin 98765432
+RUN    apk add --no-cache musl-dev libgcc libstdc++ zlib libcrypto1.0 && \
+       mkdir -p /var/lib/softhsm/tokens/
