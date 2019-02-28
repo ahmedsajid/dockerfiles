@@ -22,7 +22,7 @@ RUN    apk add  build-base sqlite autoconf automake boost-dev libtool p11-kit-de
 FROM   alpine:${alpine_version}
 
 ARG    alpine_version=${alpine_version}
-        
+
 COPY   --from=builder /usr/bin/softhsm2-* /usr/bin/
 COPY   --from=builder /etc/softhsm2.conf /etc/softhsm2.conf
 COPY   --from=builder /usr/lib/softhsm/libsofthsm2.so /usr/lib/softhsm/libsofthsm2.so
