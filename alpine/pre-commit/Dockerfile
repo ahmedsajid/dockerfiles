@@ -2,8 +2,8 @@ FROM python:alpine as base
 
 RUN apk --no-cache update \
     && apk --no-cache upgrade \
-    && apk add git \
-    && pip install --no-cache-dir pre-commit
+    && apk add git gcc musl-dev \
+    && pip install --no-cache-dir pre-commit ansible-lint
 
 FROM scratch
 
