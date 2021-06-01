@@ -10,3 +10,4 @@ FROM scratch
 COPY --from=base / /
 
 ENTRYPOINT ["pre-commit"]
+CMD ["run", "--all-files"]
