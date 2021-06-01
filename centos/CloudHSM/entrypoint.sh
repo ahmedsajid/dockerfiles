@@ -16,3 +16,4 @@ do
 done
 echo -e "\n* CloudHSM client started successfully ... \n"
 tail -F /tmp/cloudhsm_client_start.log
+
