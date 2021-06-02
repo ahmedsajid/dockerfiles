@@ -14,3 +14,8 @@ repos:
    - id: check-shebang-scripts-are-executable
    - id: check-symlinks
    - id: detect-private-key
+
+#-  repo: https://github.com/hadolint/hadolint
+#   rev: v2.4.1
+#   hooks:
+#   - id: hadolint-docker
