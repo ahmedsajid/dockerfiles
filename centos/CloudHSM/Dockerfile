@@ -1,7 +1,7 @@
 # Docker image with running cloudhsm client
 # Pre-req: Have CloudHSM fully setup on the node
 
-FROM centos:7 as base
+FROM centos:8 as base
 COPY entrypoint.sh /
 RUN yum -y update \
     && yum -y install wget libedit libtool-dev \
