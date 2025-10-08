@@ -1,12 +1,12 @@
 # Build image
-FROM  python:3.9-alpine as build
+FROM  python:3.14-alpine as build
 
 RUN   pip install virtualenv \
       && virtualenv /opt/venv \
       && /opt/venv/bin/pip install --no-cache-dir pre-commit
 
 # Base Image
-FROM  python:3.9-alpine as base
+FROM  python:3.14-alpine as base
 
 COPY  --from=build /opt/venv /opt/venv
 
