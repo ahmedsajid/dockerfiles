@@ -2,7 +2,7 @@
 # This Dockerfile builds Softhsmv2 inside Alpine Image
 #
 
-ARG    alpine_version=3.8
+ARG    alpine_version=3.24
 
 # Image to be used for Building
 FROM   alpine:${alpine_version} as builder
