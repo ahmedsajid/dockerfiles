@@ -1,4 +1,4 @@
-FROM golang:1.13 as build
+FROM golang:1.27 as build
 RUN mkdir -p ${GOPATH}/src/github.com/trustbloc \
     && cd ${GOPATH}/src/github.com/trustbloc \
     && git clone https://github.com/trustbloc/fabric-cli-ext.git \
@@ -10,7 +10,7 @@ RUN mkdir -p ${GOPATH}/src/github.com/trustbloc \
     && /opt/fabric-cli-ext/bin/fabric plugin install /opt/fabric-cli-ext/file \
     && /opt/fabric-cli-ext/bin/fabric plugin install /opt/fabric-cli-ext/extensions
 
-FROM golang:1.13 as base
+FROM golang:1.27 as base
 COPY --from=build /opt/fabric-cli-ext /opt/fabric-cli-ext 
 COPY --from=build /root/.fabric /root/.fabric
 RUN apt-get update \
